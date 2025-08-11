@@ -18,9 +18,18 @@ public class Enrollment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer enrollmentId;
 
-    private Integer studentId;
+    // Remove these plain ID fields:
+    // private Integer studentId;
+    // private Integer courseId;
 
-    private Integer courseId;
+    // Add this ManyToOne relation to Course:
+    @ManyToOne(fetch = FetchType.LAZY)  // lazy fetch optional but recommended
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
 
     private LocalDate enrollDate;
+
+    public Integer getId() {
+        return enrollmentId;
+    }
 }

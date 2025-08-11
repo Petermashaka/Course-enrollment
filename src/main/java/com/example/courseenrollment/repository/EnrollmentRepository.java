@@ -7,7 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer> {
-    List<Enrollment> findByStudentId(Integer studentId);
+public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
+    List<Enrollment> findByCourseId(Long courseId);
     List<Enrollment> findByCourseId(Integer courseId);
 }
+
+
+
+
+

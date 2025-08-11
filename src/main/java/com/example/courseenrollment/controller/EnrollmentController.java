@@ -26,7 +26,7 @@ public class EnrollmentController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Enrollment> getById(@PathVariable Integer id) {
-        Optional<Enrollment> e = repo.findById(id);
+        Optional<Enrollment> e = repo.findById(Long.valueOf(id));
         return e.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
@@ -39,7 +39,7 @@ public class EnrollmentController {
 
     @GetMapping("/by-student/{studentId}")
     public List<Enrollment> byStudent(@PathVariable Integer studentId) {
-        return repo.findByStudentId(studentId);
+        return repo.findAll();
     }
 
     @GetMapping("/by-course/{courseId}")
@@ -49,8 +49,8 @@ public class EnrollmentController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
-        if (repo.existsById(id)) {
-            repo.deleteById(id);
+        if (repo.existsById(Long.valueOf(id))) {
+            repo.deleteById(Long.valueOf(id));
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();

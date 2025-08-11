@@ -24,4 +24,8 @@ public class Course {
     private String description;
 
     private Integer instructorId;
+
+    public Integer getId() {
+        return courseId;
+    }
 }
